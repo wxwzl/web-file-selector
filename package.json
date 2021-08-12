@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/wxwzl/file-selector.git"
+    "url": "https://gitee.com/wxwzl/web-file-selector.git"
   },
   "typings": "dist/types",
   "keywords": [
