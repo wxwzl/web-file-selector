@@ -1,0 +1,9 @@
+{
+    "entryPoints": [
+        "src/index.ts"
+    ],
+    "out": "docs",
+    "name": "file-selector",
+    "theme": "markdown",
+    "readme": "none"
+}
