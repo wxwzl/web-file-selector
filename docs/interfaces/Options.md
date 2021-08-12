@@ -1,4 +1,4 @@
-[file-selector](../README.md) / Options
+[web-file-selector](../README.md) / Options
 
 # Interface: Options
 

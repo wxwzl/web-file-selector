@@ -38,7 +38,7 @@ const defaultConfig: Options = {
   maxSize: 8,
   multiple: false,
 };
-export default class FileSelector {
+export default class WebFileSelector {
   private inputNode!: HTMLInputElement & {
     capture?: boolean | string;
   };

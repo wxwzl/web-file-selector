@@ -1,17 +1,17 @@
-# file-selector
+# web-file-selector
 
 封装了在浏览器中选择文件并获取特定格式的一个类 FileSelector。
 
 ## 安装
 
-` npm i file-selector -S`
+` npm i web-file-selector -S`
 
 ## 使用
 
 ```
-  import FileSelector from "file-selector";
+  import FileSelector from "web-file-selector";
 
-  let fileSelector = new FileSelector({ accept: "image/gif,image/jpeg,image/jpg,image/png", maxSize: 2, multiple: true });
+  let fileSelector = new WebFileSelector({ accept: "image/gif,image/jpeg,image/jpg,image/png", maxSize: 2, multiple: true });
   fileSelector
     .on("oversize-error", (error) => {
       console.log(error.message || "文件大小超出了");

@@ -1,23 +1,13 @@
-file-selector
+web-file-selector
 
-# file-selector
+# web-file-selector
 
 ## Table of contents
 
-### References
-
-- [default](README.md#default)
-
 ### Classes
 
-- [FileSelector](classes/FileSelector.md)
+- [default](classes/default.md)
 
 ### Interfaces
 
 - [Options](interfaces/Options.md)
-
-## References
-
-### default
-
-Renames and exports: [FileSelector](classes/FileSelector.md)
