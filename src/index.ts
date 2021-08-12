@@ -39,7 +39,7 @@ const defaultConfig: Options = {
   multiple: false,
 };
 export default class WebFileSelector {
-  private inputNode!: HTMLInputElement & {
+  public inputNode!: HTMLInputElement & {
     capture?: boolean | string;
   };
   private option: Options;
