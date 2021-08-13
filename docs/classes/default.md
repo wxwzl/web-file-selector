@@ -87,7 +87,7 @@ ___
 
 ### inputNode
 
-• `Private` **inputNode**: `HTMLInputElement` & { `capture?`: `string` \| `boolean`  }
+• **inputNode**: `HTMLInputElement` & { `capture?`: `string` \| `boolean`  }
 
 #### Defined in
 
