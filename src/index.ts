@@ -95,17 +95,17 @@ export default class WebFileSelector {
     if (this.option.maxSize) {
       const isLt8M = file.size / 1024 / 1024 < this.option.maxSize;
       if (!isLt8M) {
-        this.emit("oversize-error", this.option.overSizeErrorText);
+        this.emitError("oversize-error", this.option.overSizeErrorText);
         return false;
       }
     }
     if (this.option.accept && !this.acceptTypes.includes(file.type)) {
-      this.emit("file-type-error", this.option.fileTypeErrorText);
+      this.emitError("file-type-error", this.option.fileTypeErrorText);
       return false;
     }
     return true;
   }
-  emitError(eventName: string, errMsg: string) {
+  emitError(eventName: string, errMsg: string="") {
     this.emit(eventName, new Error(errMsg));
   }
   emit(eventName: string, ...arg: Array<any>) {
