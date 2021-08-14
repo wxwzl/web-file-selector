@@ -176,14 +176,14 @@ ___
 
 ### emitError
 
-▸ **emitError**(`eventName`, `errMsg`): `void`
+▸ **emitError**(`eventName`, `errMsg?`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | `string` |
-| `errMsg` | `string` |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `eventName` | `string` | `undefined` |
+| `errMsg` | `string` | `""` |
 
 #### Returns
 

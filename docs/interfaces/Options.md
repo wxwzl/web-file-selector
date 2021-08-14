@@ -63,7 +63,7 @@ ___
 
 • `Optional` **maxSize**: `number`
 
- Defines the max size of file that can be selected.
+ Defines the max size of file that can be selected.uint:MB
 
 #### Defined in
 

@@ -2,7 +2,7 @@ import EventEmitter from "wolfy87-eventemitter";
 
 export interface Options {
   /**
-   *  Defines the max size of file that can be selected.
+   *  Defines the max size of file that can be selected.uint:MB
    */
   maxSize?: number;
   /**
