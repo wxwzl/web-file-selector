@@ -42,7 +42,7 @@ export default class WebFileSelector {
   public inputNode!: HTMLInputElement & {
     capture?: boolean | string;
   };
-  private option: Options;
+  public option: Options;
   private eventEmitter: EventEmitter = new EventEmitter();
   private files: any;
   private acceptTypes: Array<string> = [];
@@ -105,7 +105,7 @@ export default class WebFileSelector {
     }
     return true;
   }
-  emitError(eventName: string, errMsg: string="") {
+  emitError(eventName: string, errMsg: string = "") {
     this.emit(eventName, new Error(errMsg));
   }
   emit(eventName: string, ...arg: Array<any>) {
@@ -138,6 +138,19 @@ export default class WebFileSelector {
     if (accept) {
       this.acceptTypes = accept.replace(/\s/g, "").split(",");
     }
+  }
+
+  setMultiple(multiple: boolean) {
+    this.option.multiple = multiple;
+    this.inputNode.multiple = multiple;
+  }
+  setMaxSize(maxSize: number) {
+    this.option.maxSize = maxSize;
+  }
+
+  setCapture(capture: string | boolean) {
+    this.option.capture = capture;
+    this.inputNode.capture = capture;
   }
   destroy() {
     // document.body.removeChild(this.inputNode);
