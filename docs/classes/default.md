@@ -34,6 +34,9 @@
 - [once](default.md#once)
 - [selectFile](default.md#selectfile)
 - [setAccept](default.md#setaccept)
+- [setCapture](default.md#setcapture)
+- [setMaxSize](default.md#setmaxsize)
+- [setMultiple](default.md#setmultiple)
 - [transformFiles](default.md#transformfiles)
 - [walkFiles](default.md#walkfiles)
 
@@ -97,7 +100,7 @@ ___
 
 ### option
 
-• `Private` **option**: [`Options`](../interfaces/Options.md)
+• **option**: [`Options`](../interfaces/Options.md)
 
 #### Defined in
 
@@ -149,7 +152,7 @@ ___
 
 #### Defined in
 
-index.ts:142
+index.ts:155
 
 ___
 
@@ -205,7 +208,7 @@ ___
 
 #### Defined in
 
-index.ts:168
+index.ts:181
 
 ___
 
@@ -219,7 +222,7 @@ ___
 
 #### Defined in
 
-index.ts:161
+index.ts:174
 
 ___
 
@@ -233,7 +236,7 @@ ___
 
 #### Defined in
 
-index.ts:147
+index.ts:160
 
 ___
 
@@ -247,7 +250,7 @@ ___
 
 #### Defined in
 
-index.ts:154
+index.ts:167
 
 ___
 
@@ -261,7 +264,7 @@ ___
 
 #### Defined in
 
-index.ts:176
+index.ts:189
 
 ___
 
@@ -382,6 +385,66 @@ index.ts:136
 
 ___
 
+### setCapture
+
+▸ **setCapture**(`capture`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `capture` | `string` \| `boolean` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+index.ts:151
+
+___
+
+### setMaxSize
+
+▸ **setMaxSize**(`maxSize`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `maxSize` | `number` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+index.ts:147
+
+___
+
+### setMultiple
+
+▸ **setMultiple**(`multiple`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `multiple` | `boolean` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+index.ts:143
+
+___
+
 ### transformFiles
 
 ▸ **transformFiles**(`type`): `Promise`<`unknown`\>
@@ -398,7 +461,7 @@ ___
 
 #### Defined in
 
-index.ts:184
+index.ts:197
 
 ___
 
