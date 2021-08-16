@@ -107,6 +107,7 @@ export default class WebFileSelector {
   }
   emitError(eventName: string, errMsg: string = "") {
     this.emit(eventName, new Error(errMsg));
+    return this;
   }
   emit(eventName: string, ...arg: Array<any>) {
     this.eventEmitter.emit(eventName, ...arg);
@@ -138,19 +139,23 @@ export default class WebFileSelector {
     if (accept) {
       this.acceptTypes = accept.replace(/\s/g, "").split(",");
     }
+    return this;
   }
 
   setMultiple(multiple: boolean) {
     this.option.multiple = multiple;
     this.inputNode.multiple = multiple;
+    return this;
   }
   setMaxSize(maxSize: number) {
     this.option.maxSize = maxSize;
+    return this;
   }
 
   setCapture(capture: string | boolean) {
     this.option.capture = capture;
     this.inputNode.capture = capture;
+    return this;
   }
   destroy() {
     // document.body.removeChild(this.inputNode);

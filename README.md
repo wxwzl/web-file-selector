@@ -25,6 +25,8 @@
       });
     })
     .selectFile();
+    
+   fileSelector.setAccept("image/gif").setMaxSize(8).setCapture(true).setMultiple(false);
 
 ```
 

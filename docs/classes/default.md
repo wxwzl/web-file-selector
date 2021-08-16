@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-index.ts:155
+index.ts:160
 
 ___
 
@@ -173,13 +173,13 @@ ___
 
 #### Defined in
 
-index.ts:111
+index.ts:112
 
 ___
 
 ### emitError
 
-▸ **emitError**(`eventName`, `errMsg?`): `void`
+▸ **emitError**(`eventName`, `errMsg?`): [`default`](default.md)
 
 #### Parameters
 
@@ -190,7 +190,7 @@ ___
 
 #### Returns
 
-`void`
+[`default`](default.md)
 
 #### Defined in
 
@@ -208,7 +208,7 @@ ___
 
 #### Defined in
 
-index.ts:181
+index.ts:186
 
 ___
 
@@ -222,7 +222,7 @@ ___
 
 #### Defined in
 
-index.ts:174
+index.ts:179
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-index.ts:160
+index.ts:165
 
 ___
 
@@ -250,7 +250,7 @@ ___
 
 #### Defined in
 
-index.ts:167
+index.ts:172
 
 ___
 
@@ -264,7 +264,7 @@ ___
 
 #### Defined in
 
-index.ts:189
+index.ts:194
 
 ___
 
@@ -285,7 +285,7 @@ ___
 
 #### Defined in
 
-index.ts:116
+index.ts:117
 
 ___
 
@@ -306,7 +306,7 @@ ___
 
 #### Defined in
 
-index.ts:124
+index.ts:125
 
 ___
 
@@ -347,7 +347,7 @@ ___
 
 #### Defined in
 
-index.ts:120
+index.ts:121
 
 ___
 
@@ -361,13 +361,13 @@ ___
 
 #### Defined in
 
-index.ts:128
+index.ts:129
 
 ___
 
 ### setAccept
 
-▸ **setAccept**(`accept`): `void`
+▸ **setAccept**(`accept`): [`default`](default.md)
 
 #### Parameters
 
@@ -377,17 +377,17 @@ ___
 
 #### Returns
 
-`void`
+[`default`](default.md)
 
 #### Defined in
 
-index.ts:136
+index.ts:137
 
 ___
 
 ### setCapture
 
-▸ **setCapture**(`capture`): `void`
+▸ **setCapture**(`capture`): [`default`](default.md)
 
 #### Parameters
 
@@ -397,17 +397,17 @@ ___
 
 #### Returns
 
-`void`
+[`default`](default.md)
 
 #### Defined in
 
-index.ts:151
+index.ts:155
 
 ___
 
 ### setMaxSize
 
-▸ **setMaxSize**(`maxSize`): `void`
+▸ **setMaxSize**(`maxSize`): [`default`](default.md)
 
 #### Parameters
 
@@ -417,17 +417,17 @@ ___
 
 #### Returns
 
-`void`
+[`default`](default.md)
 
 #### Defined in
 
-index.ts:147
+index.ts:150
 
 ___
 
 ### setMultiple
 
-▸ **setMultiple**(`multiple`): `void`
+▸ **setMultiple**(`multiple`): [`default`](default.md)
 
 #### Parameters
 
@@ -437,11 +437,11 @@ ___
 
 #### Returns
 
-`void`
+[`default`](default.md)
 
 #### Defined in
 
-index.ts:143
+index.ts:145
 
 ___
 
@@ -461,7 +461,7 @@ ___
 
 #### Defined in
 
-index.ts:197
+index.ts:202
 
 ___
 
