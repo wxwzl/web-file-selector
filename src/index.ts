@@ -93,7 +93,7 @@ export default class WebFileSelector {
   }
   checkFile(file: Blob) {
     if (this.option.maxSize) {
-      const isLt8M = file.size / 1024 / 1024 < this.option.maxSize;
+      const isLt8M = file.size / 1024 / 1024 <= this.option.maxSize;
       if (!isLt8M) {
         this.emitError("oversize-error", this.option.overSizeErrorText);
         return false;
