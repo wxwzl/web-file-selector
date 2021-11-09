@@ -1,8 +1,8 @@
 {
   "name": "web-file-selector",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "a file select in web browser",
-  "main": "dist/index.js",
+  "main": "dist/index.min.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -12,7 +12,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "test": "npx jest",
     "doc": "npx typedoc src/index.ts",
-    "prepublish": "npm run build"
+    "prepublishonly": "npm run build"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -21,7 +21,7 @@
     "type": "git",
     "url": "https://gitee.com/wxwzl/web-file-selector.git"
   },
-  "typings": "dist/types",
+  "typings": "dist",
   "keywords": [
     "web-file-selector",
     "file-selector",

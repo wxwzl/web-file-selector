@@ -22,6 +22,32 @@ cleanDir(outPutDir);
 const customResolver = resolve({
   extensions: [".ts", ".js", ".jsx", ".json", ".less", ".vue"],
 });
+function getPlungins() {
+  return [
+    alias({
+      entries: [
+        { find: "@/", replacement: path.resolve(projectRootDir, "src") },
+      ],
+      customResolver,
+    }),
+    resolve({
+      browser: true,
+    }),
+    nodePolyfills(),
+    json(),
+    ts(),
+    commonjs(),
+  ];
+}
+const plugins = getPlungins();
+plugins.push(
+  terser({
+    compress: {
+      ecma: 2015,
+      pure_getters: true,
+    },
+  })
+);
 const libName = "FileSelector";
 export default [
   {
@@ -55,37 +81,29 @@ export default [
         exports: "auto",
       }, //一个自动执行的功能，适合作为<script>标签。（如果要为应用程序创建一个捆绑包，您可能想要使用它，因为它会使文件大小变小。）
     ],
-    plugins: [
-      alias({
-        entries: [
-          { find: "@/", replacement: path.resolve(projectRootDir, "src") },
-        ],
-        customResolver,
-      }),
-      resolve({
-        browser: true,
-      }),
-      nodePolyfills(),
-      json(),
-      ts(),
-      commonjs(),
-      terser({
-        compress: {
-          ecma: 2015,
-          pure_getters: true,
-        },
-      }),
-    ]
+    plugins: plugins
   },
   {
     input: "src/index.ts",
     output: [
       {
-        file: "dist/types/index.d.ts",
+        file: "dist/index.d.ts",
         format: "esm",
         exports: "auto",
       },
     ],
     plugins: [dts()],
+  },
+  {
+    input: "src/index.ts",
+    output: [
+      {
+        file: "dist/index.js",
+        format: "umd",
+        exports: "auto",
+        name: libName,
+      },
+    ],
+    plugins: getPlungins(),
   },
 ];
