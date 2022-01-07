@@ -54,28 +54,22 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        file: packageJSON.main,
-        format: "umd",
-        exports: "auto",
-        name: libName,
-      },
-      {
-        file: "dist/index.cjs.js",
+        file: "dist/index.full.cjs.js",
         format: "cjs",
         exports: "auto",
         sourcemap: true,
         sourcemapFile: "/dist/sourceMap",
       },
       {
-        file: "dist/index.umd.js",
+        file: "dist/index.full.umd.js",
         format: "umd",
         exports: "auto",
         name: libName,
       },
-      { file: "dist/index.esm.js", format: "esm", exports: "auto" },
-      { file: "dist/index.amd.js", format: "amd", exports: "auto" },
+      { file: "dist/index.full.esm.js", format: "esm", exports: "auto" },
+      { file: "dist/index.full.amd.js", format: "amd", exports: "auto" },
       {
-        file: "dist/index.iife.js",
+        file: "dist/index.full.iife.js",
         format: "iife",
         name: libName,
         exports: "auto",
@@ -105,5 +99,19 @@ export default [
       },
     ],
     plugins: getPlungins(),
+    external:["@wxwzl/eventemitter"]
+  },
+  {
+    input: "src/index.ts",
+    output: [
+      {
+        file: packageJSON.main,
+        format: "umd",
+        exports: "auto",
+        name: libName,
+      },
+    ],
+    plugins: getPlungins(),
+    external:["@wxwzl/eventemitter"]
   },
 ];

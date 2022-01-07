@@ -1,4 +1,4 @@
-import EventEmitter from "wolfy87-eventemitter";
+import EventEmitter from "@wxwzl/eventemitter";
 
 export interface Options {
   /**
@@ -38,15 +38,15 @@ const defaultConfig: Options = {
   maxSize: 8,
   multiple: false,
 };
-export default class WebFileSelector {
+export default class WebFileSelector extends EventEmitter {
   public inputNode!: HTMLInputElement & {
     capture?: boolean | string;
   };
   public option: Options;
-  private eventEmitter: EventEmitter = new EventEmitter();
   private files: any;
   private acceptTypes: Array<string> = [];
   constructor(option: Options = defaultConfig) {
+    super();
     this.option = option;
     this.createInputElement();
 
@@ -63,7 +63,7 @@ export default class WebFileSelector {
     this.inputNode = document.createElement("input");
     this.inputNode.style.display = "none";
     this.inputNode.type = "file";
-    this.inputNode.capture = this.option.capture;
+    this.inputNode.capture = this.option.capture as string;
     this.inputNode.multiple = this.option.multiple ? true : false;
     this.inputNode.onchange = this.onChange.bind(this);
   }
@@ -109,23 +109,7 @@ export default class WebFileSelector {
     this.emit(eventName, new Error(errMsg));
     return this;
   }
-  emit(eventName: string, ...arg: Array<any>) {
-    this.eventEmitter.emit(eventName, ...arg);
-    return this;
-  }
 
-  off(eventName: string, listener: (...arg: Array<any>) => void) {
-    this.eventEmitter.off(eventName, listener);
-    return this;
-  }
-  once(eventName: string, listener: (...arg: Array<any>) => void) {
-    this.eventEmitter.once(eventName, listener);
-    return this;
-  }
-  on(eventName: string, listener: (...arg: Array<any>) => void) {
-    this.eventEmitter.on(eventName, listener);
-    return this;
-  }
   public selectFile() {
     this.inputNode.value = "";
     setTimeout(() => {
@@ -154,7 +138,7 @@ export default class WebFileSelector {
 
   setCapture(capture: string | boolean) {
     this.option.capture = capture;
-    this.inputNode.capture = capture;
+    this.inputNode.capture = capture as string;
     return this;
   }
   destroy() {
