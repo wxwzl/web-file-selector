@@ -111,7 +111,7 @@ export default [
         name: libName,
       },
     ],
-    plugins: getPlungins(),
+    plugins:  plugins,
     external:["@wxwzl/eventemitter"]
   },
 ];
