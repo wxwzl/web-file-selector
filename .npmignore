@@ -16,3 +16,4 @@ CHANGELOG.md
 commitlint.config.js
 tsconfig.json
 src
+pnpm-lock.yaml
