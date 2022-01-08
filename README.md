@@ -28,6 +28,39 @@
     
    fileSelector.setAccept("image/gif").setMaxSize(8).setCapture(true).setMultiple(false);
 
+
+   let fileSelector = new FileSelector({
+          accept: "image/gif,image/jpeg,image/jpg,image/png",
+          maxSize: 2,
+          multiple: true,
+        });
+        let invalidFileList = [];
+        let validFileList = [];
+        let allSelectFileList = [];
+        fileSelector
+          .on("oversize-error", (error, file) => {
+            invalidFileList.push(file);
+            console.log("invalidFile:", file.name, file.size, file.type);
+          })
+          .on("file-type-error", (error, file) => {
+            invalidFileList.push(file);
+            console.log("invalidFile:", file.name, file.size, file.type);
+          })
+          .once("select-file-success", (file) => {
+            validFileList.push(file);
+            console.log("validFile:", file.name, file.size, file.type);
+            fileSelector.getFileInArrayBuffer([file]).then((data) => {
+              console.log(data[0]);
+            });
+          })
+          .once("select-file-end", (files) => {
+            allSelectFileList = files;
+            console.log("allSelectFileList", allSelectFileList);
+            console.log("invalidFileList", invalidFileList);
+            console.log("validFileList", validFileList);
+          })
+          .selectFile();
+
 ```
 
 ## 可运行示例
