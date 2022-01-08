@@ -11,12 +11,12 @@
 ```
   import FileSelector from "web-file-selector";
 
-  let fileSelector = new WebFileSelector({ accept: "image/gif,image/jpeg,image/jpg,image/png", maxSize: 2, multiple: true });
+  let fileSelector = new WebFileSelector({ accept: "image/gif,image/jpeg,image/jpg,image/png", maxSize: 2, multiple: false });
   fileSelector
-    .on("oversize-error", (error) => {
+    .on("oversize-error", (error,file) => {
       console.log(error.message || "文件大小超出了");
     })
-    .on("file-type-error", (error) => {
+    .on("file-type-error", (error,file) => {
       console.log(error.message || "文件类型有误");
     })
     .once("select-file-success", (file) => {

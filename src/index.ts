@@ -71,21 +71,15 @@ export default class WebFileSelector extends EventEmitter {
     this.files = (event.target as any).files;
     let flag = true;
     this.walkFiles((file) => {
-      flag = this.checkFile(file);
-      if (!flag) {
-        return true;
-      }
-      return false;
+      this.checkFile(file);
     });
-    if (flag) {
-      this.emit("select-file-success", this.files);
-    }
+    this.emit("select-file-end", this.files);
   }
-  walkFiles(callBack: (file: Blob) => boolean, context?: any) {
+  walkFiles(callBack: (file: Blob) => boolean | void, context?: any) {
     const array = this.files;
     const len = array.length;
     for (let i = 0; i < len; i++) {
-      const stop: boolean = callBack && callBack.call(context, array[i]);
+      const stop: boolean | void = callBack && callBack.call(context, array[i]);
       if (stop) {
         return;
       }
@@ -95,18 +89,19 @@ export default class WebFileSelector extends EventEmitter {
     if (this.option.maxSize) {
       const isLt8M = file.size / 1024 / 1024 <= this.option.maxSize;
       if (!isLt8M) {
-        this.emitError("oversize-error", this.option.overSizeErrorText,file);
+        this.emitError("oversize-error", this.option.overSizeErrorText, file);
         return false;
       }
     }
     if (this.option.accept && !this.acceptTypes.includes(file.type)) {
-      this.emitError("file-type-error", this.option.fileTypeErrorText,file);
+      this.emitError("file-type-error", this.option.fileTypeErrorText, file);
       return false;
     }
+    this.emit("select-file-success", file);
     return true;
   }
-  emitError(eventName: string, errMsg: string = "",...rest:Array<any>) {
-    this.emit(eventName, new Error(errMsg),...rest);
+  emitError(eventName: string, errMsg: string = "", ...rest: Array<any>) {
+    this.emit(eventName, new Error(errMsg), ...rest);
     return this;
   }
 
@@ -153,37 +148,49 @@ export default class WebFileSelector extends EventEmitter {
       return Promise.reject(null);
     }
   }
-  getFileInDataUrl(): Promise<Array<string>> {
+  getFileInDataUrl(files?: Array<File>): Promise<Array<string>> {
+    if (files) {
+      return this.transformFiles(files, "binaryString") as Promise<Array<string>>;
+    }
     if (this.files) {
-      return this.transformFiles("dataUrl") as Promise<Array<string>>;
+      return this.transformFiles(this.files, "dataUrl") as Promise<Array<string>>;
     } else {
       return Promise.reject(null);
     }
   }
-  getFileInBinaryString(): Promise<Array<string>> {
+  getFileInBinaryString(files?: Array<File>): Promise<Array<string>> {
+    if (files) {
+      return this.transformFiles(files, "binaryString") as Promise<Array<string>>;
+    }
     if (this.files) {
-      return this.transformFiles("binaryString") as Promise<Array<string>>;
+      return this.transformFiles(this.files, "binaryString") as Promise<Array<string>>;
     } else {
       return Promise.reject(null);
     }
   }
-  getFileInArrayBuffer(): Promise<Array<ArrayBuffer>> {
+  getFileInArrayBuffer(files?: Array<File>): Promise<Array<ArrayBuffer>> {
+    if (files) {
+      return this.transformFiles(files, "arrayBuffer") as Promise<Array<ArrayBuffer>>;
+    }
     if (this.files) {
-      return this.transformFiles("arrayBuffer") as Promise<Array<ArrayBuffer>>;
+      return this.transformFiles(this.files, "arrayBuffer") as Promise<Array<ArrayBuffer>>;
     } else {
       return Promise.reject(null);
     }
   }
 
-  getFileInText(): Promise<Array<string>> {
+  getFileInText(files?: Array<File>): Promise<Array<string>> {
+    if (files) {
+      return this.transformFiles(files, "text") as Promise<Array<string>>;
+    }
     if (this.files) {
-      return this.transformFiles("text") as Promise<Array<string>>;
+      return this.transformFiles(this.files, "text") as Promise<Array<string>>;
     } else {
       return Promise.reject(null);
     }
   }
 
-  transformFiles(type: string) {
+  transformFiles(files: Array<File>, type: string) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       let readFile: (file: Blob) => void;
@@ -209,7 +216,6 @@ export default class WebFileSelector extends EventEmitter {
           };
           break;
       }
-      const files: Array<any> = this.files;
       const result: Array<any> = [];
       let len = files.length;
       reader.onload = function () {

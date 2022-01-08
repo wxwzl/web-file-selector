@@ -20,13 +20,16 @@
     <script>
       let btn1 = document.getElementById("selectSinglePicture");
       btn1.onclick = function () {
-        let fileSelector = new FileSelector({ accept: "image/gif,image/jpeg,image/jpg,image/png", maxSize: 2 });
+        let fileSelector = new FileSelector({
+          accept: "image/gif,image/jpeg,image/jpg,image/png",
+          maxSize: 2,
+        });
         fileSelector
-          .on("oversize-error", (error,file) => {
-            console.log(error.message || "文件大小超出了",file);
+          .on("oversize-error", (error, file) => {
+            console.log(error.message || "文件大小超出了", file);
           })
-          .on("file-type-error", (error,file) => {
-            console.log(error.message || "文件类型有误",file);
+          .on("file-type-error", (error, file) => {
+            console.log(error.message || "文件类型有误", file);
           })
           .once("select-file-success", (file) => {
             fileSelector.getFileInArrayBuffer().then((data) => {
@@ -37,18 +40,35 @@
       };
       let btn2 = document.getElementById("selectMultiPicture");
       btn2.onclick = function () {
-        let fileSelector = new FileSelector({ accept: "image/gif,image/jpeg,image/jpg,image/png", maxSize: 2, multiple: true });
+        let fileSelector = new FileSelector({
+          accept: "image/gif,image/jpeg,image/jpg,image/png",
+          maxSize: 2,
+          multiple: true,
+        });
+        let invalidFileList = [];
+        let validFileList = [];
+        let allSelectFileList = [];
         fileSelector
-          .on("oversize-error", (error) => {
-            console.log(error.message || "文件大小超出了");
+          .on("oversize-error", (error, file) => {
+            invalidFileList.push(file);
+            console.log("invalidFile:", file.name, file.size, file.type);
           })
-          .on("file-type-error", (error) => {
-            console.log(error.message || "文件类型有误");
+          .on("file-type-error", (error, file) => {
+            invalidFileList.push(file);
+            console.log("invalidFile:", file.name, file.size, file.type);
           })
           .once("select-file-success", (file) => {
-            fileSelector.getFileInArrayBuffer().then((data) => {
+            validFileList.push(file);
+            console.log("validFile:", file.name, file.size, file.type);
+            fileSelector.getFileInArrayBuffer([file]).then((data) => {
               console.log(data[0]);
             });
+          })
+          .once("select-file-end", (files) => {
+            allSelectFileList = files;
+            console.log("allSelectFileList", allSelectFileList);
+            console.log("invalidFileList", invalidFileList);
+            console.log("validFileList", validFileList);
           })
           .selectFile();
       };
