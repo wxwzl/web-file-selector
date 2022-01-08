@@ -1,6 +1,6 @@
 {
   "name": "web-file-selector",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "a file select in web browser",
   "main": "dist/index.min.js",
   "scripts": {

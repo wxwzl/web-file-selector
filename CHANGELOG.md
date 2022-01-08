@@ -1,9 +1,11 @@
-## [0.0.7](https://gitee.com/wxwzl/web-file-selector/compare/0.0.5...0.0.7) (2022-01-07)
+# [1.0.0](https://gitee.com/wxwzl/web-file-selector/compare/0.0.5...1.0.0) (2022-01-08)
 
 
 ### Features
 
 *  change < maxSize to <=maxSize ([56c9b92](https://gitee.com/wxwzl/web-file-selector/commits/56c9b92b0b729c4b55054ab66ecba5b5454bbc89))
+* 修改多选文件的处理逻辑,增加select-file-end事件 ([9a567cb](https://gitee.com/wxwzl/web-file-selector/commits/9a567cba3f4967aed2c2159d582f90bcc2f51183))
+* oversize-error和file-type-error事件增加file参数 ([e811965](https://gitee.com/wxwzl/web-file-selector/commits/e8119655f725e2b1e3f662846dfc30db199154df))
 
 
 
