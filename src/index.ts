@@ -95,18 +95,18 @@ export default class WebFileSelector extends EventEmitter {
     if (this.option.maxSize) {
       const isLt8M = file.size / 1024 / 1024 <= this.option.maxSize;
       if (!isLt8M) {
-        this.emitError("oversize-error", this.option.overSizeErrorText);
+        this.emitError("oversize-error", this.option.overSizeErrorText,file);
         return false;
       }
     }
     if (this.option.accept && !this.acceptTypes.includes(file.type)) {
-      this.emitError("file-type-error", this.option.fileTypeErrorText);
+      this.emitError("file-type-error", this.option.fileTypeErrorText,file);
       return false;
     }
     return true;
   }
-  emitError(eventName: string, errMsg: string = "") {
-    this.emit(eventName, new Error(errMsg));
+  emitError(eventName: string, errMsg: string = "",...rest:Array<any>) {
+    this.emit(eventName, new Error(errMsg),...rest);
     return this;
   }
 

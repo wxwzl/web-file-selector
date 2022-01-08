@@ -22,11 +22,11 @@
       btn1.onclick = function () {
         let fileSelector = new FileSelector({ accept: "image/gif,image/jpeg,image/jpg,image/png", maxSize: 2 });
         fileSelector
-          .on("oversize-error", (error) => {
-            console.log(error.message || "文件大小超出了");
+          .on("oversize-error", (error,file) => {
+            console.log(error.message || "文件大小超出了",file);
           })
-          .on("file-type-error", (error) => {
-            console.log(error.message || "文件类型有误");
+          .on("file-type-error", (error,file) => {
+            console.log(error.message || "文件类型有误",file);
           })
           .once("select-file-success", (file) => {
             fileSelector.getFileInArrayBuffer().then((data) => {
