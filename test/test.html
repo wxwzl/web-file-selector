@@ -62,14 +62,14 @@
             invalidFileList.push(file);
             console.log("invalidFile:", file.name, file.size, file.type);
           })
-          .once("select-file-success", (file) => {
+          .on("select-file-success", (file) => {
             validFileList.push(file);
             console.log("validFile:", file.name, file.size, file.type);
             fileSelector.getFileInArrayBuffer([file]).then((data) => {
               console.log(data[0]);
             });
           })
-          .once("select-file-end", (files) => {
+          .on("select-file-end", (files) => {
             allSelectFileList = files;
             console.log("allSelectFileList", allSelectFileList);
             console.log("invalidFileList", invalidFileList);
