@@ -15,7 +15,7 @@ specifiers:
   '@types/node': ^16.4.0
   '@typescript-eslint/eslint-plugin': ^4.28.3
   '@typescript-eslint/parser': ^4.28.3
-  '@wxwzl/eventemitter': ^0.0.3
+  '@wxwzl/eventemitter': 1.0.1
   babel-jest: ^27.4.6
   conventional-changelog-cli: ^2.1.1
   core-js: ^3.15.2
@@ -42,7 +42,7 @@ specifiers:
   typescript: ^4.3.5
 
 dependencies:
-  '@wxwzl/eventemitter': 0.0.3
+  '@wxwzl/eventemitter': 1.0.1
 
 devDependencies:
   '@babel/core': 7.16.7
@@ -2013,8 +2013,8 @@ packages:
       eslint-visitor-keys: 2.1.0
     dev: true
 
-  /@wxwzl/eventemitter/0.0.3:
-    resolution: {integrity: sha512-S9OdND70J4oVUz45qiU1TFGbja/Ok5CLVd2ey0dtXKxh1qRIE6fZ76xuINIS+qLic1uh9zSIHIL7Wa9NrlqhPg==}
+  /@wxwzl/eventemitter/1.0.1:
+    resolution: {integrity: sha512-0PREvbpteYxDoZdutI54LQELEp2dTQDCbIrCyQORv5iaLJ90pz7uKMlb+jN+YhTaAxF4CU2qIdHM93jo2D82BQ==}
     dev: false
 
   /JSONStream/1.3.5:
