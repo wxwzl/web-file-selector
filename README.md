@@ -4,12 +4,13 @@
 
 ## 安装
 
-` npm i web-file-selector -S`
+`npm i web-file-selector -S`
 
 ## 使用
 
 ```
-  import FileSelector from "web-file-selector";
+  import WebFileSelector from "web-file-selector";
+
 
   let fileSelector = new WebFileSelector({ accept: "image/gif,image/jpeg,image/jpg,image/png", maxSize: 2, multiple: false });
   fileSelector
@@ -25,7 +26,7 @@
       });
     })
     .selectFile();
-    
+
    fileSelector.setAccept("image/gif").setMaxSize(8).setCapture(true).setMultiple(false);
 
 
@@ -66,6 +67,12 @@
 ## 可运行示例
 
 见./test/test.html;
+
+## 注意事项
+
+- 建议将 image/jpeg,image/jpg，这两种格式同时允许或同时不允许，因为两者格式在电脑上常常出现名字是 jpg 实际上是 jpeg 格式。
+- 在部分 android 手机系统不支持同时多选文件，这是受系统限制的，不是包问题。
+- 包内部是采用了 HTML 原生的 `<input type="file" />` 标签访问文件系统，能否访问到文件取决于当前系统和浏览器的兼容性、权限等问题。
 
 ## 文档
 
