@@ -1,4 +1,4 @@
-# [1.0.0](https://gitee.com/wxwzl/web-file-selector/compare/0.0.5...1.0.0) (2022-01-08)
+## [1.0.2](https://gitee.com/wxwzl/web-file-selector/compare/0.0.5...1.0.2) (2022-03-16)
 
 
 ### Features
