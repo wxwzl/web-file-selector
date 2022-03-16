@@ -75,7 +75,7 @@ export default class WebFileSelector extends EventEmitter {
     });
     this.emit("select-file-end", this.files);
   }
-  walkFiles(callBack: (file: Blob) => boolean | void, context?: any) {
+  walkFiles(callBack: (file: File) => boolean | void, context?: any) {
     const array = this.files;
     const len = array.length;
     for (let i = 0; i < len; i++) {
@@ -85,7 +85,7 @@ export default class WebFileSelector extends EventEmitter {
       }
     }
   }
-  checkFile(file: Blob) {
+  checkFile(file: File) {
     if (this.option.maxSize) {
       const isLt8M = file.size / 1024 / 1024 <= this.option.maxSize;
       if (!isLt8M) {

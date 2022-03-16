@@ -18,3 +18,5 @@ tsconfig.json
 src
 pnpm-lock.yaml
 coverage
+babel.config.js
+jest.config.js
