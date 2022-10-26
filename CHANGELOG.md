@@ -1,8 +1,9 @@
-## [1.0.4](https://gitee.com/wxwzl/web-file-selector/compare/1.0.2...1.0.4) (2022-10-26)
+## [1.0.5](https://gitee.com/wxwzl/web-file-selector/compare/1.0.2...1.0.5) (2022-10-26)
 
 
 ### Bug Fixes
 
+* error tips ([02732c3](https://gitee.com/wxwzl/web-file-selector/commits/02732c3756fddc3d1648bdf09d86f5375a426313))
 * setAccept ([d506e28](https://gitee.com/wxwzl/web-file-selector/commits/d506e285b0dd001eed12c868412d80584f445280))
 * setMaxSize method ([f86c986](https://gitee.com/wxwzl/web-file-selector/commits/f86c986674e279c94aa20ac74982d1a7233b8b1d))
 
