@@ -45,6 +45,8 @@ export default class WebFileSelector extends EventEmitter {
   public option: Options;
   private files: any;
   private acceptTypes: Array<string> = [];
+  private overSizeErrorText = "";
+  private fileTypeErrorText = "";
   constructor(option: Options = defaultConfig) {
     super();
     this.option = option;
@@ -53,10 +55,14 @@ export default class WebFileSelector extends EventEmitter {
     this.setAccept(option.accept);
 
     if (!this.option.overSizeErrorText) {
-      this.option.overSizeErrorText = `上传的文件大小不能超过 ${this.option.maxSize}MB!`;
+      this.overSizeErrorText = `上传的文件大小不能超过 ${this.option.maxSize}MB!`;
+    } else {
+      this.overSizeErrorText = this.option.overSizeErrorText;
     }
     if (!this.option.fileTypeErrorText) {
-      this.option.fileTypeErrorText = `请选择正确的文件类型!`;
+      this.fileTypeErrorText = `文件类型只允许为：${this.option.accept}`;
+    } else {
+      this.fileTypeErrorText = this.option.fileTypeErrorText;
     }
   }
   private createInputElement() {
@@ -89,12 +95,12 @@ export default class WebFileSelector extends EventEmitter {
     if (this.option.maxSize) {
       const isLt8M = file.size / 1024 / 1024 <= this.option.maxSize;
       if (!isLt8M) {
-        this.emitError("oversize-error", this.option.overSizeErrorText, file);
+        this.emitError("oversize-error", this.overSizeErrorText, file);
         return false;
       }
     }
     if (this.option.accept && !this.acceptTypes.includes(file.type)) {
-      this.emitError("file-type-error", this.option.fileTypeErrorText, file);
+      this.emitError("file-type-error", this.fileTypeErrorText, file);
       return false;
     }
     this.emit("select-file-success", file);
@@ -118,6 +124,9 @@ export default class WebFileSelector extends EventEmitter {
     if (accept) {
       this.option.accept = accept;
       this.acceptTypes = accept.replace(/\s/g, "").split(",");
+      if (!this.option.fileTypeErrorText) {
+        this.fileTypeErrorText = `文件类型只允许为：${this.option.accept}`;
+      }
     }
     return this;
   }
@@ -130,7 +139,7 @@ export default class WebFileSelector extends EventEmitter {
   setMaxSize(maxSize: number) {
     this.option.maxSize = maxSize;
     if (!this.option.overSizeErrorText) {
-      this.option.overSizeErrorText = `上传的文件大小不能超过 ${this.option.maxSize}MB!`;
+      this.overSizeErrorText = `上传的文件大小不能超过 ${this.option.maxSize}MB!`;
     }
     return this;
   }
