@@ -1,3 +1,12 @@
+## [1.0.3](https://gitee.com/wxwzl/web-file-selector/compare/1.0.2...1.0.3) (2022-10-26)
+
+
+### Bug Fixes
+
+* setAccept ([d506e28](https://gitee.com/wxwzl/web-file-selector/commits/d506e285b0dd001eed12c868412d80584f445280))
+
+
+
 ## [1.0.2](https://gitee.com/wxwzl/web-file-selector/compare/0.0.5...1.0.2) (2022-03-16)
 
 
