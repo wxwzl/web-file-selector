@@ -58,7 +58,7 @@ export default [
         format: "cjs",
         exports: "auto",
         sourcemap: true,
-        sourcemapFile: "/dist/sourceMap",
+        sourcemapFile: "/dist/sourceMap/index.full.cjs.js.map",
       },
       {
         file: "dist/index.full.umd.js",

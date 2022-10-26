@@ -116,6 +116,7 @@ export default class WebFileSelector extends EventEmitter {
   setAccept(accept: string | undefined) {
     this.inputNode.accept = accept || "";
     if (accept) {
+      this.option.accept = accept;
       this.acceptTypes = accept.replace(/\s/g, "").split(",");
     }
     return this;
@@ -150,30 +151,42 @@ export default class WebFileSelector extends EventEmitter {
   }
   getFileInDataUrl(files?: Array<File>): Promise<Array<string>> {
     if (files) {
-      return this.transformFiles(files, "binaryString") as Promise<Array<string>>;
+      return this.transformFiles(files, "binaryString") as Promise<
+        Array<string>
+      >;
     }
     if (this.files) {
-      return this.transformFiles(this.files, "dataUrl") as Promise<Array<string>>;
+      return this.transformFiles(this.files, "dataUrl") as Promise<
+        Array<string>
+      >;
     } else {
       return Promise.reject(null);
     }
   }
   getFileInBinaryString(files?: Array<File>): Promise<Array<string>> {
     if (files) {
-      return this.transformFiles(files, "binaryString") as Promise<Array<string>>;
+      return this.transformFiles(files, "binaryString") as Promise<
+        Array<string>
+      >;
     }
     if (this.files) {
-      return this.transformFiles(this.files, "binaryString") as Promise<Array<string>>;
+      return this.transformFiles(this.files, "binaryString") as Promise<
+        Array<string>
+      >;
     } else {
       return Promise.reject(null);
     }
   }
   getFileInArrayBuffer(files?: Array<File>): Promise<Array<ArrayBuffer>> {
     if (files) {
-      return this.transformFiles(files, "arrayBuffer") as Promise<Array<ArrayBuffer>>;
+      return this.transformFiles(files, "arrayBuffer") as Promise<
+        Array<ArrayBuffer>
+      >;
     }
     if (this.files) {
-      return this.transformFiles(this.files, "arrayBuffer") as Promise<Array<ArrayBuffer>>;
+      return this.transformFiles(this.files, "arrayBuffer") as Promise<
+        Array<ArrayBuffer>
+      >;
     } else {
       return Promise.reject(null);
     }
