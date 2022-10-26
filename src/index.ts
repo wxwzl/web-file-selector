@@ -129,6 +129,9 @@ export default class WebFileSelector extends EventEmitter {
   }
   setMaxSize(maxSize: number) {
     this.option.maxSize = maxSize;
+    if (!this.option.overSizeErrorText) {
+      this.option.overSizeErrorText = `上传的文件大小不能超过 ${this.option.maxSize}MB!`;
+    }
     return this;
   }
 
