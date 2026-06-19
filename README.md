@@ -116,7 +116,7 @@ fileSelector
 
 ## Playground
 
-在线体验地址：[GitHub Pages](https://wxwzl.github.io/web-file-selector/playground/)
+在线体验地址：[GitHub Pages](https://wxwzl.github.io/web-file-selector/)
 
 本地预览：
 
