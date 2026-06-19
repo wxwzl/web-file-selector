@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "description": "a file select in web browser",
   "main": "dist/index.min.js",
+  "files": ["dist"],
   "scripts": {
     "build": "rollup -c",
     "playground": "npm run build && node scripts/playground.js",
