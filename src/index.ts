@@ -123,7 +123,7 @@ export default class WebFileSelector extends EventEmitter {
         return false;
       }
     }
-    if (this.option.accept && !this.acceptTypes.includes(file.type)) {
+    if (this.option.accept && !this.isAcceptTypeMatch(file)) {
       this.emitError("file-type-error", this.fileTypeErrorText, file);
       return false;
     }
@@ -163,6 +163,21 @@ export default class WebFileSelector extends EventEmitter {
       }
     }
     return this;
+  }
+  private isAcceptTypeMatch(file: File): boolean {
+    const fileType = file.type.toLowerCase();
+    return this.acceptTypes.some((acceptType) => {
+      const type = acceptType.toLowerCase();
+      // Exact match, e.g. "image/png"
+      if (type === fileType) {
+        return true;
+      }
+      // Wildcard match, e.g. "image/*" matches "image/jpeg"
+      if (type.endsWith("/*") && fileType.startsWith(type.slice(0, -1))) {
+        return true;
+      }
+      return false;
+    });
   }
   private getFileExtension(fileName: string): string {
     const dotIndex = fileName.lastIndexOf(".");

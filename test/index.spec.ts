@@ -80,6 +80,29 @@ test("accept and acceptedFileExtensions both validated", () => {
   expect(successSpy).toHaveBeenCalledTimes(1);
 });
 
+test("accept wildcard matches file types", () => {
+  const fileSelector = new WebFileSelector({
+    accept: "image/*",
+  });
+  const successSpy = jest.fn();
+  const errorSpy = jest.fn();
+
+  fileSelector
+    .on("select-file-success", successSpy)
+    .on("file-type-error", errorSpy);
+
+  // image/jpeg should match image/*
+  fileSelector["files"] = [new File([""], "photo.jpeg", { type: "image/jpeg" })];
+  (fileSelector as any).onChange({ target: { files: fileSelector["files"] } } as any);
+  expect(successSpy).toHaveBeenCalledTimes(1);
+  expect(errorSpy).toHaveBeenCalledTimes(0);
+
+  // video/mp4 should not match image/*
+  fileSelector["files"] = [new File([""], "video.mp4", { type: "video/mp4" })];
+  (fileSelector as any).onChange({ target: { files: fileSelector["files"] } } as any);
+  expect(errorSpy).toHaveBeenCalledTimes(1);
+});
+
 test("setAcceptedFileExtensions updates validation", () => {
   const fileSelector = new WebFileSelector({});
   fileSelector.setAcceptedFileExtensions(".jpg");
