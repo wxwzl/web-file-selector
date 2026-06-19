@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web-file-selector Playground</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        padding: 16px;
+        background: #f5f7fa;
+        color: #333;
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .links {
+        display: flex;
+        gap: 12px;
+      }
+      .links a {
+        display: flex;
+        align-items: center;
+        color: #555;
+        text-decoration: none;
+      }
+      .links a:hover {
+        color: #0969da;
+      }
+      .desc {
+        font-size: 12px;
+        color: #888;
+        margin-top: 10px;
+        line-height: 1.5;
+      }
+      .links a:hover svg {
+        fill: #0969da;
+      }
+      .links svg {
+        width: 22px;
+        height: 22px;
+        fill: #555;
+        transition: fill 0.15s ease;
+      }
+      .section {
+        background: #fff;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+      .section h2 {
+        margin: 0 0 10px;
+        font-size: 14px;
+        color: #555;
+      }
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      button {
+        padding: 6px 12px;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        background: #f6f8fa;
+        cursor: pointer;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+      button:hover {
+        background: #eff2f5;
+      }
+      button.primary {
+        background: #0969da;
+        color: #fff;
+        border-color: #0969da;
+      }
+      button.primary:hover {
+        background: #0550ae;
+      }
+      #configPreview {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 6px;
+        background: #f6f8fa;
+        border: 1px solid #d0d7de;
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+          monospace;
+        font-size: 12px;
+        min-height: 38px;
+        color: #555;
+      }
+      #configPreview.empty {
+        color: #888;
+      }
+      .log-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        margin-bottom: 0;
+      }
+      .log-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+      .log-header h2 {
+        margin: 0;
+      }
+      #log {
+        flex: 1;
+        width: 100%;
+        min-height: 0;
+        padding: 12px;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        background: #f6f8fa;
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+          monospace;
+        font-size: 12px;
+        resize: none;
+        white-space: pre-wrap;
+        overflow: auto;
+      }
+      #log .event-name {
+        font-weight: bold;
+      }
+      #log .event-success {
+        color: #1a7f37;
+      }
+      #log .event-error {
+        color: #cf222e;
+      }
+      .clear {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>web-file-selector Playground</h1>
+      <div class="links">
+        <a
+          href="https://github.com/wxwzl/web-file-selector"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://www.npmjs.com/package/web-file-selector"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="npm"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M0 7.75v7.5h6.75v1.5H12v-1.5h12v-7.5H0zm1.5 6h3v-4.5h1.5v4.5h1.5v-6H1.5v6zm7.5-6v6h3v-1.5h3v-4.5h-6zm4.5 3h-1.5v-1.5h1.5v1.5zm6-3v6h1.5v-4.5h1.5v4.5h1.5v-4.5h1.5v4.5H24v-6h-4.5z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="buttons">
+        <button class="primary">单张图片</button>
+        <button>多张图片</button>
+        <button>拍照（capture）</button>
+        <button>PDF（MIME）</button>
+        <button>.pdf/.doc/.docx</button>
+        <button>MIME + 扩展名</button>
+      </div>
+      <div id="configPreview" class="empty">
+        鼠标悬停在按钮上查看选择条件，点击后执行
+      </div>
+      <p class="desc">
+        提示：桌面浏览器通常不支持通过文件输入框直接调用摄像头；<br />
+        「拍照（capture）」示例请在移动设备或支持 capture 的浏览器上测试。
+      </p>
+    </div>
+
+    <div class="section log-section">
+      <div class="log-header">
+        <h2>事件日志</h2>
+        <button class="clear" onclick="clearLog()">清空日志</button>
+      </div>
+      <div id="log"></div>
+    </div>
+
+    <script src="./dist/index.full.umd.js"></script>
+    <script>
+      const logEl = document.getElementById("log");
+      const configPreviewEl = document.getElementById("configPreview");
+
+      const scenarios = [
+        {
+          name: "单张图片",
+          config: {
+            accept: "image/gif,image/jpeg,image/jpg,image/png",
+            maxSize: 2,
+          },
+        },
+        {
+          name: "多张图片",
+          config: {
+            accept: "image/gif,image/jpeg,image/jpg,image/png",
+            maxSize: 2,
+            multiple: true,
+          },
+        },
+        {
+          name: "拍照（capture）",
+          config: {
+            accept: "image/*",
+            capture: "user",
+            maxSize: 8,
+          },
+        },
+        {
+          name: "PDF（MIME）",
+          config: {
+            accept: "application/pdf",
+            maxSize: 8,
+          },
+        },
+        {
+          name: ".pdf/.doc/.docx",
+          config: {
+            acceptedFileExtensions: ".pdf,.doc,.docx",
+            maxSize: 8,
+          },
+        },
+        {
+          name: "MIME + 扩展名",
+          config: {
+            accept: "image/png",
+            acceptedFileExtensions: ".pdf",
+            maxSize: 8,
+          },
+        },
+      ];
+
+      function log(eventName, data) {
+        const time = new Date().toLocaleTimeString();
+        const isError = eventName.includes("error");
+        const className = isError ? "event-error" : "event-success";
+        const line = document.createElement("div");
+        line.innerHTML = `[${time}] <span class="event-name ${className}">${eventName}</span>: ${JSON.stringify(data, null, 2)}`;
+        logEl.appendChild(line);
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+
+      function clearLog() {
+        logEl.innerHTML = "";
+      }
+
+      function showConfig(config) {
+        const lines = Object.entries(config).map(
+          ([key, value]) => `${key}: ${JSON.stringify(value)}`
+        );
+        configPreviewEl.textContent = `new FileSelector({\n  ${lines.join(",\n  ")}\n})`;
+        configPreviewEl.classList.remove("empty");
+      }
+
+      function clearConfigPreview() {
+        configPreviewEl.textContent = "鼠标悬停在按钮上查看选择条件，点击后执行";
+        configPreviewEl.classList.add("empty");
+      }
+
+      function bindCommonEvents(selector) {
+        selector
+          .on("select-file-success", (file) => {
+            log("select-file-success", {
+              name: file.name,
+              size: file.size,
+              type: file.type,
+            });
+          })
+          .on("file-type-error", (error, file) => {
+            log("file-type-error", {
+              message: error.message,
+              name: file.name,
+              size: file.size,
+              type: file.type,
+            });
+          })
+          .on("file-extension-error", (error, file) => {
+            log("file-extension-error", {
+              message: error.message,
+              name: file.name,
+              size: file.size,
+              type: file.type,
+            });
+          })
+          .on("oversize-error", (error, file) => {
+            log("oversize-error", {
+              message: error.message,
+              name: file.name,
+              size: file.size,
+              type: file.type,
+            });
+          })
+          .on("select-file-end", (files) => {
+            log("select-file-end", { count: files.length });
+          });
+      }
+
+      let activeSelector = null;
+
+      function runScenario(config) {
+        if (activeSelector) {
+          activeSelector.destroy();
+          activeSelector = null;
+        }
+        activeSelector = new FileSelector(config);
+        bindCommonEvents(activeSelector);
+        activeSelector.selectFile();
+      }
+
+      document.querySelectorAll(".buttons button").forEach((btn, index) => {
+        const { config } = scenarios[index];
+        btn.addEventListener("mouseenter", () => showConfig(config));
+        btn.addEventListener("mouseleave", clearConfigPreview);
+        btn.addEventListener("click", () => runScenario(config));
+      });
+    </script>
+  </body>
+</html>

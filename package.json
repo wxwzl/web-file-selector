@@ -1,10 +1,11 @@
 {
   "name": "web-file-selector",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "a file select in web browser",
   "main": "dist/index.min.js",
   "scripts": {
     "build": "rollup -c",
+    "playground": "npm run build && node scripts/playground.js",
     "dev": "rollup -c -w",
     "pretest": "npm run build",
     "lint": "eslint --fix **/*.{ts,jsx,js,vue} & npm run format",
@@ -19,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/wxwzl/web-file-selector.git"
+    "url": "https://github.com/wxwzl/web-file-selector.git"
   },
   "typings": "dist",
   "keywords": [
